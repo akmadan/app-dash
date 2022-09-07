@@ -1,0 +1,54 @@
+ 
+ 
+ 
+ ingredientSearchBox(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            void searchIngredient(String query) {
+              print(query);
+
+              final ingredients = visibleIngredients.where((ingredient) {
+                final titleLower = ingredient.ingredient.toLowerCase();
+
+                final searchLower = query.toLowerCase();
+
+                return titleLower.contains(searchLower);
+              }).toList();
+              print(ingredients);
+
+              setState(() {
+                query = query;
+                visibleIngredients = ingredients;
+              });
+            }
+
+            return AlertDialog(
+                content: Container(
+              height: 800,
+              width: 500,
+              child: Column(
+                children: [
+                  SearchWidget(
+                    text: query,
+                    hintText: 'Title or Author Name',
+                    onChanged: searchIngredient,
+                  ),
+                  Container(
+                    height: 600,
+                    child: ListView.builder(
+                      itemCount: visibleIngredients.length,
+                      itemBuilder: (context, index) {
+                        final ingredientModel = visibleIngredients[index];
+
+                        return buildBook(ingredientModel);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ));
+          });
+        });
+  }
