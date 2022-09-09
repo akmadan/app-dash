@@ -20,3 +20,20 @@
       contentPadding: EdgeInsetsDirectional.fromSTEB(16, 18, 24, 18),
     );
   }
+
+
+
+  static InputDecoration searchFieldInputDecoration() {
+    return InputDecoration(
+        filled: true,
+        fillColor: Colors.grey.shade200,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        hintText: 'Search',
+        suffixIcon: Icon(
+          Icons.search,
+          color: AppColors.primary,
+        ));
+  }
