@@ -1,7 +1,7 @@
  StreamBuilder<QuerySnapshot>(
-                                stream: FirebaseFirestore.instance
-                                    .collection('')
-                                    .doc()
+                       stream: FirebaseFirestore.instance
+                          .collection('')
+                          .doc()
                                     .collection('')
                                     .snapshots(),
                                 builder: (context, snapshot) {
